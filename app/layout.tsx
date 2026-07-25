@@ -3,9 +3,16 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'Sheikh Hussain - Full Stack Developer & AI Engineer',
+  description: 'Premium portfolio showcasing Full Stack Development, AI Engineering, and Prompt Engineering expertise',
   generator: 'v0.app',
+  keywords: ['Full Stack Developer', 'AI Engineer', 'React', 'Next.js', 'Python', 'FastAPI'],
+  authors: [{ name: 'Sheikh Hussain' }],
+  openGraph: {
+    title: 'Sheikh Hussain - Full Stack Developer & AI Engineer',
+    description: 'Premium portfolio showcasing Full Stack Development, AI Engineering expertise',
+    type: 'website',
+  },
   icons: {
     icon: [
       {
@@ -39,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark bg-background">
       <body className="antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
