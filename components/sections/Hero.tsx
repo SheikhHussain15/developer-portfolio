@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Code, Link as LinkIcon, Mail, ChevronDown, Github, Star } from 'lucide-react'
 import { CustomButton } from '../ui/CustomButton'
+import { CountUpNumber } from '../ui/CountUpNumber'
 import { useState, useEffect } from 'react'
-import { CountUp } from 'react-countup'
 import { githubStats } from '@/lib/data'
 
 export function Hero() {
@@ -174,7 +174,7 @@ export function Hero() {
               transition={{ delay: 0.2 }}
               className="text-3xl md:text-4xl font-bold text-accent mb-2"
             >
-              {isVisible && <CountUp end={githubStats.repositories} duration={2} />}+
+              {isVisible && <CountUpNumber end={githubStats.repositories} suffix="+" />}
             </motion.div>
             <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider font-semibold">Projects</p>
           </div>
@@ -185,7 +185,7 @@ export function Hero() {
               transition={{ delay: 0.3 }}
               className="text-3xl md:text-4xl font-bold text-accent mb-2"
             >
-              {isVisible && <CountUp end={githubStats.stars} duration={2} />}
+              {isVisible && <CountUpNumber end={githubStats.stars} />}
             </motion.div>
             <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider font-semibold">Stars</p>
           </div>
@@ -196,7 +196,7 @@ export function Hero() {
               transition={{ delay: 0.4 }}
               className="text-3xl md:text-4xl font-bold text-accent mb-2"
             >
-              {isVisible && <CountUp end={githubStats.followers} duration={2} />}
+              {isVisible && <CountUpNumber end={githubStats.followers} />}
             </motion.div>
             <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider font-semibold">Followers</p>
           </div>
