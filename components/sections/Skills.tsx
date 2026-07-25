@@ -51,27 +51,36 @@ export function Skills() {
             <ScrollReveal key={category.title}>
               <motion.div
                 variants={itemVariants}
-                whileHover={{ y: -8 }}
-                className="p-6 rounded-lg border border-border/50 bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-all"
+                whileHover={{ y: -12, boxShadow: '0 20px 40px rgba(0, 102, 255, 0.1)' }}
+                className="relative p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-accent/50 transition-all group overflow-hidden"
               >
-                <h3 className="text-xl font-semibold mb-4 text-accent">
-                  {category.title}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {category.items.map((item, index) => (
-                    <motion.div
-                      key={item}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.05 }}
-                      viewport={{ once: true }}
-                    >
-                      <TechBadge
-                        label={item}
-                        variant={category.title === 'AI' ? 'accent' : 'default'}
-                      />
-                    </motion.div>
-                  ))}
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br from-accent/10 to-transparent pointer-events-none" />
+                
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                <div className="relative z-10">
+                  <h3 className="text-lg font-bold mb-4 text-foreground group-hover:text-accent transition-colors">
+                    {category.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {category.items.map((item, index) => (
+                      <motion.div
+                        key={item}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.05 }}
+                        viewport={{ once: true }}
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        <TechBadge
+                          label={item}
+                          variant={category.title === 'AI' ? 'accent' : 'default'}
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             </ScrollReveal>

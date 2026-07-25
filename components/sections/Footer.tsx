@@ -1,9 +1,24 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Code, Link as LinkIcon, Mail, ExternalLink } from 'lucide-react'
+import { Code, Link as LinkIcon, Mail, ExternalLink, ArrowUp } from 'lucide-react'
+import { useState, useEffect } from 'react'
 
 export function Footer() {
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      setIsVisible(window.scrollY > 300)
+    }
+
+    window.addEventListener('scroll', toggleVisibility)
+    return () => window.removeEventListener('scroll', toggleVisibility)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
   const navLinks = [
     { label: 'About', href: '#about' },
     { label: 'Skills', href: '#skills' },
@@ -18,8 +33,28 @@ export function Footer() {
   ]
 
   return (
-    <footer className="border-t border-border/50 bg-background/50 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <>
+      {/* Back to Top Button */}
+      <motion.button
+        onClick={scrollToTop}
+        animate={{ opacity: isVisible ? 1 : 0, pointerEvents: isVisible ? 'auto' : 'none' }}
+        whileHover={{ scale: 1.1, y: -4 }}
+        whileTap={{ scale: 0.95 }}
+        className="fixed bottom-8 right-8 z-40 p-3 rounded-lg bg-accent text-accent-foreground shadow-lg hover:shadow-xl transition-shadow"
+      >
+        <ArrowUp className="w-5 h-5" />
+      </motion.button>
+
+      {/* Animated divider */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        className="h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent origin-left"
+      />
+
+      <footer className="border-t border-white/5 bg-white/2.5 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Brand */}
           <motion.div
@@ -139,6 +174,7 @@ export function Footer() {
           <p>Built with React, Next.js, TailwindCSS, and Framer Motion</p>
         </motion.div>
       </div>
-    </footer>
+      </footer>
+    </>
   )
 }

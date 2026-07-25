@@ -1,10 +1,21 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Code, Link as LinkIcon, Mail } from 'lucide-react'
+import { ArrowRight, Code, Link as LinkIcon, Mail, ChevronDown } from 'lucide-react'
 import { CustomButton } from '../ui/CustomButton'
+import { useState, useEffect } from 'react'
 
 export function Hero() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -27,21 +38,42 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 pb-12 px-4 sm:px-6 lg:px-8">
-      {/* Animated background elements */}
+      {/* Animated gradient mesh background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Mouse-follow spotlight */}
         <motion.div
           animate={{
-            y: [0, -20, 0],
+            x: mousePosition.x,
+            y: mousePosition.y,
           }}
-          transition={{ duration: 7, repeat: Infinity }}
+          transition={{ type: 'spring', damping: 30, stiffness: 200 }}
+          className="absolute w-96 h-96 bg-accent/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"
+        />
+
+        {/* Floating accent orbs */}
+        <motion.div
+          animate={{
+            y: [0, -30, 0],
+            x: [0, 15, 0],
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
           className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
-            y: [0, 20, 0],
+            y: [0, 30, 0],
+            x: [0, -15, 0],
           }}
-          transition={{ duration: 7, repeat: Infinity, delay: 1 }}
+          transition={{ duration: 9, repeat: Infinity, delay: 1 }}
           className="absolute bottom-20 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"
+        />
+
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(0, 102, 255, 0.05) 25%, rgba(0, 102, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 102, 255, 0.05) 75%, rgba(0, 102, 255, 0.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(0, 102, 255, 0.05) 25%, rgba(0, 102, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(0, 102, 255, 0.05) 75%, rgba(0, 102, 255, 0.05) 76%, transparent 77%, transparent)',
+            backgroundSize: '50px 50px',
+          }}
         />
       </div>
 
@@ -51,9 +83,13 @@ export function Hero() {
         animate="visible"
         className="relative z-10 max-w-4xl mx-auto text-center"
       >
-        {/* Greeting Badge */}
-        <motion.div variants={itemVariants} className="mb-6">
-          <span className="inline-block px-4 py-2 rounded-full bg-accent/20 border border-accent/50 text-accent font-semibold text-sm">
+        {/* Status Badge with Availability */}
+        <motion.div variants={itemVariants} className="mb-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 border border-accent/50 text-accent font-semibold text-sm">
+            <span className="inline-block w-2 h-2 bg-accent rounded-full animate-pulse" />
+            Open to Internship
+          </div>
+          <span className="inline-block px-4 py-2 rounded-full bg-card border border-border/50 text-muted-foreground font-semibold text-sm">
             Welcome to my portfolio
           </span>
         </motion.div>
@@ -122,17 +158,18 @@ export function Hero() {
           </motion.a>
         </motion.div>
 
-        {/* Scroll Indicator */}
+        {/* Enhanced Scroll Indicator */}
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="mt-16 flex justify-center"
+          animate={{ y: [0, 12, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="mt-20 flex flex-col items-center gap-3"
         >
-          <div className="w-6 h-10 border-2 border-accent/50 rounded-full flex items-start justify-center p-2">
+          <span className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">Scroll to explore</span>
+          <div className="w-6 h-10 border-2 border-accent/50 rounded-full flex items-start justify-center p-2 hover:border-accent/80 transition-colors">
             <motion.div
-              animate={{ y: [0, 4, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-1 bg-accent rounded-full"
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-1 h-2 bg-accent rounded-full"
             />
           </div>
         </motion.div>

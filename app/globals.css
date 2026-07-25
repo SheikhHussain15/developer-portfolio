@@ -163,4 +163,36 @@
   body {
     @apply bg-background text-foreground;
   }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .glassmorphism {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+  
+  .glow-accent {
+    @apply shadow-[0_0_30px_rgba(0,102,255,0.2)];
+  }
+  
+  .glow-accent-lg {
+    @apply shadow-[0_0_60px_rgba(0,102,255,0.3)];
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  
+  .premium-border {
+    @apply border border-white/10 transition-colors duration-300;
+  }
 }

@@ -2,10 +2,25 @@
 
 import { motion } from 'framer-motion'
 import { Download, Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('hero')
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
+      const scrolled = (window.scrollY / scrollHeight) * 100
+      setScrollProgress(scrolled)
+      setIsScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const navLinks = [
     { label: 'About', href: '#about' },
@@ -22,12 +37,25 @@ export function Navbar() {
   }
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/95 backdrop-blur-sm"
-    >
+    <>
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-accent to-accent/50 z-50"
+        style={{ scaleX: scrollProgress / 100 }}
+        initial={{ scaleX: 0 }}
+      />
+      
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="fixed top-0 left-0 right-0 z-40 mt-1"
+      >
+        <div className={`transition-all duration-300 ${
+          isScrolled 
+            ? 'glassmorphism' 
+            : 'border-b border-border/50 bg-background/95 backdrop-blur-sm'
+        }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -106,7 +134,9 @@ export function Navbar() {
             </motion.a>
           </div>
         </motion.div>
+        </div>
       </div>
-    </motion.nav>
+      </motion.nav>
+    </>
   )
 }

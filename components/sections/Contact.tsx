@@ -67,49 +67,55 @@ export function Contact() {
           <ScrollReveal>
             <motion.form
               onSubmit={handleSubmit}
-              className="space-y-6"
+              className="space-y-6 p-8 rounded-2xl glassmorphism group"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
+              {/* Top accent line */}
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-t-2xl" />
+
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">
-                  Name
+                <label className="block text-sm font-semibold text-foreground mb-3">
+                  Full Name
                 </label>
-                <input
+                <motion.input
                   type="text"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border/50 text-foreground placeholder-muted-foreground focus:border-accent/50 focus:outline-none transition-colors"
+                  whileFocus={{ scale: 1.01 }}
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-foreground placeholder-muted-foreground focus:border-accent/50 focus:bg-white/10 focus:outline-none transition-all"
                   placeholder="Your name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">
-                  Email
+                <label className="block text-sm font-semibold text-foreground mb-3">
+                  Email Address
                 </label>
-                <input
+                <motion.input
                   type="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border/50 text-foreground placeholder-muted-foreground focus:border-accent/50 focus:outline-none transition-colors"
+                  whileFocus={{ scale: 1.01 }}
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-foreground placeholder-muted-foreground focus:border-accent/50 focus:bg-white/10 focus:outline-none transition-all"
                   placeholder="your@email.com"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">
+                <label className="block text-sm font-semibold text-foreground mb-3">
                   Message
                 </label>
-                <textarea
+                <motion.textarea
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={5}
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border/50 text-foreground placeholder-muted-foreground focus:border-accent/50 focus:outline-none transition-colors resize-none"
+                  whileFocus={{ scale: 1.01 }}
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-foreground placeholder-muted-foreground focus:border-accent/50 focus:bg-white/10 focus:outline-none transition-all resize-none"
                   placeholder="Your message..."
                 />
               </div>
@@ -142,18 +148,25 @@ export function Contact() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="flex items-start gap-4 p-4 rounded-lg border border-border/50 bg-background/50 hover:border-accent/50 transition-colors"
+                    whileHover={{ x: 8, y: -4 }}
+                    className="relative group flex items-start gap-4 p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-accent/50 transition-all"
                   >
+                    {/* Glow effect */}
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur -z-10" />
+
                     <div className="flex-shrink-0">
-                      <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-accent/20 border border-accent/50">
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        className="flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-br from-accent/30 to-accent/10 border border-accent/50 group-hover:border-accent/80 transition-colors"
+                      >
                         <Icon className="w-6 h-6 text-accent" />
-                      </div>
+                      </motion.div>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-foreground">
+                    <div className="flex-grow">
+                      <p className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
                         {info.label}
                       </p>
-                      <p className="text-muted-foreground">
+                      <p className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">
                         {info.value}
                       </p>
                     </div>
