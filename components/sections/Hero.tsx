@@ -1,12 +1,15 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Code, Link as LinkIcon, Mail, ChevronDown } from 'lucide-react'
+import { ArrowRight, Code, Link as LinkIcon, Mail, ChevronDown, Github, Star } from 'lucide-react'
 import { CustomButton } from '../ui/CustomButton'
 import { useState, useEffect } from 'react'
+import { CountUp } from 'react-countup'
+import { githubStats } from '@/lib/data'
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -14,6 +17,7 @@ export function Hero() {
     }
 
     window.addEventListener('mousemove', handleMouseMove)
+    setIsVisible(true)
     return () => window.removeEventListener('mousemove', handleMouseMove)
   }, [])
   const containerVariants = {
@@ -156,6 +160,66 @@ export function Hero() {
           >
             <Mail className="w-5 h-5" />
           </motion.a>
+        </motion.div>
+
+        {/* GitHub Stats Counters */}
+        <motion.div
+          variants={itemVariants}
+          className="grid grid-cols-3 gap-6 md:gap-12 my-16 px-4"
+        >
+          <div className="text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.2 }}
+              className="text-3xl md:text-4xl font-bold text-accent mb-2"
+            >
+              {isVisible && <CountUp end={githubStats.repositories} duration={2} />}+
+            </motion.div>
+            <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider font-semibold">Projects</p>
+          </div>
+          <div className="text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.3 }}
+              className="text-3xl md:text-4xl font-bold text-accent mb-2"
+            >
+              {isVisible && <CountUp end={githubStats.stars} duration={2} />}
+            </motion.div>
+            <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider font-semibold">Stars</p>
+          </div>
+          <div className="text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.4 }}
+              className="text-3xl md:text-4xl font-bold text-accent mb-2"
+            >
+              {isVisible && <CountUp end={githubStats.followers} duration={2} />}
+            </motion.div>
+            <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider font-semibold">Followers</p>
+          </div>
+        </motion.div>
+
+        {/* Code Snippet Card */}
+        <motion.div
+          variants={itemVariants}
+          className="my-12 max-w-2xl mx-auto p-6 rounded-xl bg-card/50 backdrop-blur-sm border border-border/50 hover:border-accent/50 transition-all"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Code className="w-4 h-4 text-accent" />
+            <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Featured Snippet</p>
+          </div>
+          <pre className="text-sm md:text-xs text-foreground overflow-x-auto">
+            <code>{`const buildAwesomeThings = () => {
+  return skills.map(skill => ({
+    passion: '100%',
+    impact: 'global',
+    result: 'life-changing'
+  }))
+}`}</code>
+          </pre>
         </motion.div>
 
         {/* Enhanced Scroll Indicator */}

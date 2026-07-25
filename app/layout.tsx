@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Starfield } from '@/components/ui/Starfield'
+import { CursorGlow } from '@/components/ui/CursorGlow'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -49,6 +50,7 @@ export default function RootLayout({
     <html lang="en" className="dark bg-background">
       <body className="antialiased relative">
         <Starfield />
+        <CursorGlow />
         <div className="relative z-10">
           {children}
         </div>

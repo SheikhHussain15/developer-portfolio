@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Download, Menu, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import { CommandPalette } from './CommandPalette'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -71,11 +72,12 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
+            <CommandPalette />
             {navLinks.map((link) => (
               <motion.button
                 key={link.label}
                 onClick={() => handleScroll(link.href)}
-                whileHover={{ color: '#0066FF' }}
+                whileHover={{ color: '#d4a574' }}
                 className="text-muted-foreground transition-colors hover:text-accent"
               >
                 {link.label}
