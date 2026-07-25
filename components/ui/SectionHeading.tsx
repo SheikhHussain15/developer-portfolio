@@ -16,7 +16,7 @@ export function SectionHeading({ title, subtitle }: SectionHeadingProps) {
       viewport={{ once: true, margin: '-100px' }}
       className="mb-12 text-center md:mb-16"
     >
-      <h2 className="text-4xl font-bold md:text-5xl text-balance text-foreground">
+      <h2 className="text-4xl md:text-5xl font-serif font-bold text-balance text-foreground tracking-tight">
         {title}
       </h2>
       {subtitle && (
