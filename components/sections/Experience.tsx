@@ -9,14 +9,15 @@ import { ScrollReveal } from '../animations/ScrollReveal'
 export function Experience() {
   const experiences = [
     {
-      title: 'Internship Search',
-      company: 'Open to Opportunities',
-      period: '2024 - 2025',
-      description: 'Actively seeking internship opportunities to apply my skills in Full Stack Development and AI Engineering. Eager to contribute to innovative projects and grow professionally.',
+      title: 'IT Teaching Expertise',
+      company: 'Additional Expertise',
+      period: '',
+      description: 'Practical teaching areas listed in my IT Teacher CV.',
       highlights: [
-        'Open to relocation',
-        'Available for full-time and internship roles',
-        'Interested in startups and established companies',
+        'Computer basics, hardware fundamentals, operating systems, and internet use',
+        'Urdu and English typing, including InPage and Nastaliq document creation',
+        'MS Word, Excel, and PowerPoint',
+        'Patient, clear, student-centred instruction',
       ],
     },
   ]
@@ -25,8 +26,8 @@ export function Experience() {
     <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
       <div className="max-w-4xl mx-auto">
         <SectionHeading
-          title="Experience"
-          subtitle="My professional journey and growth"
+          title="Additional Expertise"
+          subtitle="IT teaching and digital literacy skills"
         />
 
         <div className="space-y-8 mt-16">

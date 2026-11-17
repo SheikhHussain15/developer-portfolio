@@ -1,150 +1,98 @@
 export const skills = {
-  programming: ['Python', 'JavaScript', 'TypeScript'],
-  frontend: ['React', 'Next.js', 'TailwindCSS', 'HTML', 'CSS'],
-  backend: ['FastAPI', 'OpenAI Agents SDK'],
-  databases: ['MySQL', 'Neon SQL'],
-  cms: ['Sanity'],
-  ai: ['Prompt Engineering', 'Context Engineering', 'Agentic AI', 'Claude Code', 'Gemini CLI', 'Qwen Code', 'Kiro', 'Bonsai'],
-  tools: ['Git', 'GitHub', 'VS Code', 'Figma', 'Canva'],
+  programming: ['Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS'],
+  ai: ['OpenAI API', 'Claude API', 'Gemini API', 'OpenAI Agents SDK', 'OpenRouter'],
+  rag: ['LlamaIndex', 'ChromaDB', 'Embeddings', 'Document Ingestion'],
+  backend: ['FastAPI', 'REST APIs', 'Async Programming'],
+  frontend: ['Next.js', 'React', 'Tailwind CSS', 'shadcn/ui'],
+  databases: ['PostgreSQL', 'MySQL', 'Neon SQL', 'Prisma ORM'],
+  observability: ['Langfuse'],
+  tools: ['Git', 'GitHub', 'VS Code', 'Claude Code', 'Figma (basic)', 'Canva', 'MS Office', 'Photoshop', 'Illustrator', 'Spec-Driven Development', 'Sanity CMS'],
 }
 
 export const projects = [
   {
     title: 'Personal AI Employee',
-    description: 'Automated AI system for email and social media management',
-    problem: 'Manual email/social media management is time-consuming and repetitive',
-    solution: 'Built an intelligent automation system that handles Gmail, LinkedIn, and Facebook using OpenAI APIs',
-    features: ['Auto-reply generation', 'Content creation', 'Scheduling', 'Multi-platform support', 'Smart filtering'],
-    tech: ['Python', 'OpenAI API', 'FastAPI', 'Celery', 'PostgreSQL'],
-    github: 'https://github.com/sheikhhussain/ai-employee',
-    demo: 'https://ai-employee.vercel.app',
-    image: '/projects/ai-employee.png',
-    timeline: '3 months',
-    challenges: ['Rate limiting on external APIs', 'Handling authentication securely', 'Managing concurrent tasks'],
-    lessonsLearned: 'Learned the importance of proper API error handling and how to design scalable queue systems',
-    architecture: 'FastAPI backend with Celery workers, React frontend with real-time updates via WebSockets',
-    metrics: 'Saves 10+ hours per week, 95% automation accuracy',
+    description: 'An autonomous AI automation system for email and social media workflows.',
+    problem: 'Routine email and social publishing tasks can require repeated manual effort.',
+    solution: 'Built an agent that categorizes Gmail, drafts context-aware replies with Claude, and connects social platform APIs.',
+    features: ['Reads and categorizes Gmail messages', 'Drafts context-aware replies with Claude API', 'Automates email responses', 'Integrates LinkedIn and Facebook APIs for social content'],
+    tech: ['Python', 'Claude API', 'Gmail API', 'LinkedIn API', 'Facebook Graph API', 'MySQL'],
+    github: '',
+    demo: '',
+    timeline: '2025',
+    architecture: 'Python automation integrating Gmail, Claude, LinkedIn, Facebook, and MySQL.',
   },
   {
-    title: 'Full Stack AI Todo App',
-    description: 'Task management with AI-powered assistance and intelligent suggestions',
-    problem: 'Traditional todo apps lack contextual assistance and smart prioritization',
-    solution: 'Full stack app combining AI suggestions with a beautiful React interface',
-    features: ['Task CRUD operations', 'AI-powered suggestions', 'Real-time chat interface', 'Priority scoring', 'Deadline alerts'],
-    tech: ['React', 'Next.js', 'FastAPI', 'OpenAI', 'Supabase'],
-    github: 'https://github.com/sheikhhussain/ai-todo',
-    demo: 'https://ai-todo.vercel.app',
-    image: '/projects/ai-todo.png',
-    timeline: '6 weeks',
-    challenges: ['Implementing real-time updates', 'Optimizing AI response times', 'Designing intuitive UX'],
-    lessonsLearned: 'Gained deep understanding of streaming APIs and how to build responsive AI-powered UIs',
-    architecture: 'Next.js with server components, FastAPI microservice for AI processing, Supabase for data',
-    metrics: '500+ active users, 4.8/5 rating',
+    title: 'AI Educational Platform',
+    description: 'A multi-agent educational SaaS platform currently in development.',
+    problem: 'Designing an educational platform around AI-assisted tutoring, assessment, and learning workflows.',
+    solution: 'Planning a 10-agent architecture with RAG-based document retrieval and a full-stack learning experience.',
+    features: ['Designing a 10-agent architecture', 'AI tutoring and assessment', 'Educational content generation', 'RAG-based document retrieval', 'Intelligent learning workflows'],
+    tech: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'OpenAI Agents SDK', 'LlamaIndex', 'ChromaDB', 'PostgreSQL', 'Prisma ORM', 'Langfuse', 'OpenRouter'],
+    github: '',
+    demo: '',
+    timeline: '2026–Present · In Development',
+    architecture: 'Planned stack: FastAPI and PostgreSQL/Prisma, with a Next.js and TypeScript frontend; LlamaIndex and ChromaDB for RAG, OpenAI Agents SDK, Langfuse, and OpenRouter.',
   },
   {
-    title: 'Full Stack Ecommerce App',
-    description: 'Modern ecommerce platform for vehicle rental and sales',
-    problem: 'Existing platforms had poor UX and lacked integration with CMS for easy updates',
-    solution: 'Built a responsive full-stack app with Sanity CMS for easy content management',
-    features: ['Product catalog', 'Shopping cart', 'Checkout flow', 'Admin panel', 'Inventory management', 'Payment integration'],
-    tech: ['Next.js', 'TailwindCSS', 'Sanity CMS', 'Stripe', 'PostgreSQL'],
-    github: 'https://github.com/sheikhhussain/ecommerce',
-    demo: 'https://ecommerce.vercel.app',
-    image: '/projects/ecommerce.png',
-    timeline: '8 weeks',
-    challenges: ['Integrating Stripe securely', 'Building dynamic product pages', 'SEO optimization'],
-    lessonsLearned: 'Mastered headless CMS architecture and payment gateway integration',
-    architecture: 'Headless e-commerce with Next.js frontend, Sanity for content, Stripe for payments',
-    metrics: '$50K+ revenue, 2000+ transactions',
+    title: 'Full-Stack Todo App with AI Chatbot',
+    description: 'A task-management application with natural-language AI assistance.',
+    problem: 'Managing tasks through a chatbot requires secure user-specific data and reliable task actions.',
+    solution: 'Built a full-stack app with authentication, per-user data isolation, and natural-language task operations.',
+    features: ['Create, complete, and delete tasks through natural language', 'AI chatbot integration', 'User authentication and per-user data isolation'],
+    tech: ['Next.js', 'FastAPI', 'OpenAI Agents SDK', 'Neon SQL'],
+    github: '',
+    demo: '',
+    timeline: '2025',
+  },
+  {
+    title: 'Car Rental / Ecommerce Platform',
+    description: 'A responsive vehicle rental and ecommerce platform.',
+    problem: 'A vehicle catalog needs a responsive way to browse and manage product content.',
+    solution: 'Built a responsive Next.js platform with dynamic content managed through Sanity CMS.',
+    features: ['Browse, rent, and purchase vehicles', 'Dynamic product management', 'Responsive interface'],
+    tech: ['Next.js', 'JavaScript', 'Tailwind CSS', 'Sanity CMS'],
+    github: '',
+    demo: '',
+    timeline: '2024',
   },
 ]
 
 export const certifications = [
-  { name: 'TypeScript', date: '2024', issuer: 'Certification Body' },
-  { name: 'React', date: '2024', issuer: 'Certification Body' },
-  { name: 'Python', date: '2024', issuer: 'Certification Body' },
-  { name: 'FastAPI', date: '2024', issuer: 'Certification Body' },
-  { name: 'Prompt Engineering', date: '2024', issuer: 'OpenAI' },
-  { name: 'OpenAI Agents SDK', date: '2024', issuer: 'OpenAI' },
-  { name: 'Spec Driven Development', date: '2024', issuer: 'Certification Body' },
-  { name: 'Agentic AI', date: '2024', issuer: 'Certification Body' },
+  { name: 'Agentic AI Specialization (Ongoing)', date: '2024–Present', issuer: 'GIAIC' },
+  { name: 'Spec-Driven Development with Claude Code', date: '2026', issuer: 'GIAIC' },
+  { name: 'OpenAI Agents SDK', date: '2025', issuer: 'GIAIC' },
+  { name: 'Python, TypeScript, Next.js, React & FastAPI', date: '2024', issuer: 'GIAIC' },
+  { name: 'Prompt & Context Engineering', date: '', issuer: 'GIAIC' },
+  { name: 'CIT Certificate', date: '2023', issuer: 'ARFA Tech' },
 ]
 
 export const socials = {
-  github: 'https://github.com',
-  linkedin: 'https://linkedin.com',
-  vercel: 'https://vercel.com',
-  email: 'contact@example.com',
+  github: 'https://github.com/SheikhHussain15',
+  linkedin: 'https://linkedin.com/in/hussain-raza-0704a32b6',
+  email: 'hr773-774@gmail.com',
+  phone: '+92 370 0722474',
   location: 'Karachi, Pakistan',
 }
 
-export const education = {
-  school: 'Your University',
-  degree: 'Bachelor of Science in Computer Science',
-  graduation: '2025',
-  gpa: '3.8',
-}
+export const education = [
+  { degree: 'Agentic AI Specialization', school: 'GIAIC, Karachi', graduation: '2024–Present' },
+  { degree: 'Intermediate, Computer Science', school: 'G.DBC Asifabad, Karachi', graduation: '2026' },
+  { degree: 'Matriculation, Computer Science', school: 'Public Secondary School, Karachi', graduation: '2024' },
+  { degree: 'CIT Certificate', school: 'ARFA Tech, Karachi', graduation: '2023' },
+]
 
 export const githubStats = {
-  username: 'sheikhhussain15',
-  stars: 324,
-  repositories: 45,
-  followers: 128,
-  contributions: 1250,
-  languages: {
-    'TypeScript': 35,
-    'Python': 25,
-    'JavaScript': 20,
-    'CSS': 12,
-    'Other': 8,
-  },
+  username: 'SheikhHussain15',
 }
 
-export const currentlyLearning = [
-  { skill: 'LangChain', proficiency: 'Intermediate', icon: '🔗' },
-  { skill: 'Vector Databases', proficiency: 'Beginner', icon: '📊' },
-  { skill: 'System Design', proficiency: 'Intermediate', icon: '🏗️' },
-  { skill: 'Advanced React Patterns', proficiency: 'Intermediate', icon: '⚛️' },
-]
+export const currentlyLearning = []
 
 export const aiProjects = [
   {
-    title: 'AI Coding Assistant',
-    description: 'Custom LLM-powered code generation and debugging',
+    title: 'AI Educational Platform',
+    description: 'A multi-agent educational SaaS platform in development, with a planned RAG pipeline and intelligent learning workflows.',
     status: 'In Development',
-    technologies: ['LangChain', 'Claude API', 'Next.js'],
-  },
-  {
-    title: 'Automated Content Creator',
-    description: 'Multi-platform content generation with brand consistency',
-    status: 'Planning',
-    technologies: ['OpenAI API', 'Agentic AI', 'FastAPI'],
+    technologies: ['Python', 'FastAPI', 'Next.js', 'OpenAI Agents SDK', 'LlamaIndex', 'ChromaDB', 'PostgreSQL'],
   },
 ]
-
-export const caseStudies = [
-  {
-    title: 'Scaling AI Automation',
-    problem: 'Handling 10K+ monthly tasks with rate limits',
-    solution: 'Implemented intelligent queuing and caching strategy',
-    result: 'Reduced API costs by 40%, improved response time by 60%',
-    technologies: ['Celery', 'Redis', 'FastAPI'],
-  },
-]
-
-export const developmentProcess = {
-  steps: [
-    { step: 'Understanding', description: 'Deep dive into problem and requirements' },
-    { step: 'Research', description: 'Explore solutions and best practices' },
-    { step: 'Architecture', description: 'Design scalable, maintainable systems' },
-    { step: 'Implementation', description: 'Write clean, tested code' },
-    { step: 'Refinement', description: 'Optimize and enhance based on feedback' },
-  ],
-}
-
-export const techStackVisualization = {
-  frontend: ['React', 'Next.js', 'TailwindCSS', 'Framer Motion', 'TypeScript'],
-  backend: ['FastAPI', 'Node.js', 'PostgreSQL', 'Supabase', 'Celery'],
-  ai: ['OpenAI', 'Claude', 'Gemini', 'LangChain', 'Prompt Engineering'],
-  devops: ['Docker', 'GitHub Actions', 'Vercel', 'AWS', 'Git'],
-}

@@ -8,7 +8,6 @@ import { CurrentlyBuilding } from '@/components/sections/CurrentlyBuilding'
 import { Experience } from '@/components/sections/Experience'
 import { Education } from '@/components/sections/Education'
 import { GitHub } from '@/components/sections/GitHub'
-import { Vercel } from '@/components/sections/Vercel'
 import { Contact } from '@/components/sections/Contact'
 import { Footer } from '@/components/sections/Footer'
 
@@ -26,7 +25,6 @@ export default function Page() {
         <Experience />
         <Education />
         <GitHub />
-        <Vercel />
         <Contact />
         <Footer />
       </main>
