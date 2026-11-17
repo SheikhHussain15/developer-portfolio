@@ -15,7 +15,7 @@ export default function Page() {
   return (
     <>
       <Navbar />
-      <main className="bg-background">
+      <main className="overflow-x-clip bg-background">
         <Hero />
         <About />
         <Skills />
