@@ -39,7 +39,7 @@ export function Starfield() {
     let animationId: number
     const animate = () => {
       // Clear canvas with dark background
-      ctx.fillStyle = '#0a0e27'
+      ctx.fillStyle = '#17130f'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       // Draw and animate stars

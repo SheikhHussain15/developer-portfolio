@@ -5,14 +5,14 @@ import { CursorGlow } from '@/components/ui/CursorGlow'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Sheikh Hussain - Full Stack Developer & AI Engineer',
-  description: 'Premium portfolio showcasing Full Stack Development, AI Engineering, and Prompt Engineering expertise',
+  title: 'Hussain Raza | Agentic AI Developer',
+  description: 'Hussain Raza is an Agentic AI and LLM application developer and Computer Science student based in Karachi, Pakistan.',
   generator: 'v0.app',
-  keywords: ['Full Stack Developer', 'AI Engineer', 'React', 'Next.js', 'Python', 'FastAPI'],
-  authors: [{ name: 'Sheikh Hussain' }],
+  keywords: ['Agentic AI Developer', 'LLM Application Developer', 'Python', 'FastAPI', 'RAG', 'Karachi'],
+  authors: [{ name: 'Hussain Raza' }],
   openGraph: {
-    title: 'Sheikh Hussain - Full Stack Developer & AI Engineer',
-    description: 'Premium portfolio showcasing Full Stack Development, AI Engineering expertise',
+    title: 'Hussain Raza | Agentic AI Developer',
+    description: 'Agentic AI, LLM application development, and full-stack projects by Hussain Raza in Karachi, Pakistan.',
     type: 'website',
   },
   icons: {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   colorScheme: 'dark',
   themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#0a0e27' },
+    { media: '(prefers-color-scheme: dark)', color: '#17130f' },
   ],
 }
 

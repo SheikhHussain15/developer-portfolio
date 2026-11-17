@@ -27,15 +27,15 @@ export function CurrentlyBuilding() {
   }
 
   const statusStyles = {
-    'In Development': 'from-green-500/20 to-green-500/5 border-green-500/30',
-    'Planning': 'from-yellow-500/20 to-yellow-500/5 border-yellow-500/30',
-    'Coming Soon': 'from-purple-500/20 to-purple-500/5 border-purple-500/30',
+    'In Development': 'from-accent/15 to-accent/5 border-accent/30',
+    'Planning': 'from-accent/15 to-accent/5 border-accent/30',
+    'Coming Soon': 'from-accent/15 to-accent/5 border-accent/30',
   }
 
   const statusColors = {
-    'In Development': 'text-green-400',
-    'Planning': 'text-yellow-400',
-    'Coming Soon': 'text-purple-400',
+    'In Development': 'text-accent',
+    'Planning': 'text-accent',
+    'Coming Soon': 'text-accent',
   }
 
   return (
@@ -98,24 +98,7 @@ export function CurrentlyBuilding() {
                     </div>
                   </div>
 
-                  {/* Progress indicator */}
-                  {project.status === 'In Development' && (
-                    <div className="mt-6 p-3 rounded-lg bg-green-500/10 border border-green-500/20">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-semibold text-green-400">Progress</span>
-                        <span className="text-xs text-green-400">60%</span>
-                      </div>
-                      <div className="h-2 bg-background rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: '60%' }}
-                          transition={{ duration: 1 }}
-                          viewport={{ once: true }}
-                          className="h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full"
-                        />
-                      </div>
-                    </div>
-                  )}
+
                 </motion.div>
               </motion.div>
             </ScrollReveal>
@@ -135,7 +118,7 @@ export function CurrentlyBuilding() {
             <p className="text-muted-foreground mb-6">Let&apos;s collaborate or discuss ideas. Reach out on GitHub or LinkedIn!</p>
             <div className="flex gap-4 justify-center flex-wrap">
               <motion.a
-                href="https://github.com/sheikhhussain15"
+                href="https://github.com/SheikhHussain15"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, y: -2 }}

@@ -69,7 +69,7 @@ export function CommandPalette() {
       description: 'Visit my GitHub profile',
       icon: <CodeIcon className="w-4 h-4" />,
       action: () => {
-        window.open('https://github.com/sheikhhussain15', '_blank')
+        window.open('https://github.com/SheikhHussain15', '_blank', 'noopener,noreferrer')
       },
       category: 'Social',
     },
@@ -79,7 +79,7 @@ export function CommandPalette() {
       description: 'Visit my LinkedIn profile',
       icon: <LinkIcon className="w-4 h-4" />,
       action: () => {
-        window.open('https://linkedin.com', '_blank')
+        window.open('https://linkedin.com/in/hussain-raza-0704a32b6', '_blank', 'noopener,noreferrer')
       },
       category: 'Social',
     },
@@ -89,7 +89,10 @@ export function CommandPalette() {
       description: 'Get my resume PDF',
       icon: <FileText className="w-4 h-4" />,
       action: () => {
-        console.log('Resume download initiated')
+        const link = document.createElement('a')
+        link.href = '/resume.pdf'
+        link.download = 'Hussain-Raza-AI-Developer-CV.pdf'
+        link.click()
         setIsOpen(false)
       },
       category: 'Documents',

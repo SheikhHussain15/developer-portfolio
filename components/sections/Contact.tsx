@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, MapPin, Link as LinkIcon, Code, Send } from 'lucide-react'
+import { Mail, MapPin, Link as LinkIcon, Code, Send, Phone } from 'lucide-react'
 import { useState } from 'react'
 import { SectionHeading } from '../ui/SectionHeading'
 import { AnimatedCard } from '../ui/AnimatedCard'
@@ -31,26 +31,32 @@ export function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'hussain@example.com',
-      href: 'mailto:hussain@example.com',
+      value: 'hr773-774@gmail.com',
+      href: 'mailto:hr773-774@gmail.com',
+    },
+    {
+      icon: Phone,
+      label: 'Phone',
+      value: '+92 370 0722474',
+      href: 'tel:+923700722474',
     },
     {
       icon: MapPin,
       label: 'Location',
       value: 'Karachi, Pakistan',
-      href: '#',
+      href: 'https://maps.google.com/?q=Karachi,Pakistan',
     },
     {
       icon: Code,
       label: 'GitHub',
-      value: 'github.com/sheikhhussain',
-      href: 'https://github.com',
+      value: 'github.com/SheikhHussain15',
+      href: 'https://github.com/SheikhHussain15',
     },
     {
       icon: LinkIcon,
       label: 'LinkedIn',
-      value: 'linkedin.com/in/sheikhhussain',
-      href: 'https://linkedin.com',
+      value: 'linkedin.com/in/hussain-raza-0704a32b6',
+      href: 'https://linkedin.com/in/hussain-raza-0704a32b6',
     },
   ]
 

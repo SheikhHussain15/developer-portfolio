@@ -14,12 +14,8 @@ export function AnimatedCard({ children, className = '', delay = 0 }: AnimatedCa
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -8 }}
-      transition={{
-        duration: 0.5,
-        delay,
-        hover: { duration: 0.3 },
-      }}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      transition={{ duration: 0.5, delay }}
       viewport={{ once: true, margin: '-100px' }}
       className={`rounded-lg border border-border/50 bg-card/50 backdrop-blur-sm p-6 ${className}`}
     >

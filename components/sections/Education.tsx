@@ -12,37 +12,30 @@ export function Education() {
     <section id="education" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <SectionHeading
-          title="Education &amp; Certifications"
-          subtitle="Continuous learning and professional development"
+          title="Education & Certifications"
+          subtitle="Academic background and training listed in my CV"
         />
 
         <div className="grid md:grid-cols-2 gap-12 mt-16">
-          {/* Education */}
           <ScrollReveal>
             <div className="space-y-8">
               <h3 className="text-2xl font-bold text-foreground">Education</h3>
-              <AnimatedCard className="flex gap-6">
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-accent/20 border border-accent/50">
-                    <BookOpen className="w-6 h-6 text-accent" />
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="text-lg font-bold text-foreground">
-                    {education.degree}
-                  </h4>
-                  <p className="text-accent font-semibold">
-                    {education.school}
-                  </p>
-                  <p className="text-muted-foreground mt-2">
-                    Graduation: {education.graduation}
-                  </p>
-                  <p className="text-muted-foreground">
-                    GPA: {education.gpa}
-                  </p>
-                </div>
-              </AnimatedCard>
+              <div className="space-y-4">
+                {education.map(item => (
+                  <AnimatedCard key={item.degree} className="flex gap-5">
+                    <div className="flex-shrink-0">
+                      <div className="flex items-center justify-center w-11 h-11 rounded-lg bg-accent/15 border border-accent/30">
+                        <BookOpen className="w-5 h-5 text-accent" />
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-foreground">{item.degree}</h4>
+                      <p className="text-accent font-medium">{item.school}</p>
+                      <p className="text-sm text-muted-foreground mt-1">{item.graduation}</p>
+                    </div>
+                  </AnimatedCard>
+                ))}
+              </div>
             </div>
           </ScrollReveal>
 
@@ -67,7 +60,7 @@ export function Education() {
                           {cert.name}
                         </p>
                         <p className="text-sm text-muted-foreground">
-                          {cert.issuer} • {cert.date}
+                          {cert.issuer}{cert.date && ` • ${cert.date}`}
                         </p>
                       </div>
                     </div>

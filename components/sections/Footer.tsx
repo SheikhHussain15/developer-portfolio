@@ -27,9 +27,9 @@ export function Footer() {
   ]
 
   const socials = [
-    { icon: Code, href: 'https://github.com', label: 'GitHub' },
-    { icon: LinkIcon, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:hussain@example.com', label: 'Email' },
+    { icon: Code, href: 'https://github.com/SheikhHussain15', label: 'GitHub' },
+    { icon: LinkIcon, href: 'https://linkedin.com/in/hussain-raza-0704a32b6', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:hr773-774@gmail.com', label: 'Email' },
   ]
 
   return (
@@ -66,10 +66,10 @@ export function Footer() {
               <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold">SH</span>
               </div>
-              <span className="font-bold text-foreground">Sheikh Hussain</span>
+              <span className="font-bold text-foreground">Hussain Raza</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Full Stack Developer &amp; AI Engineer crafting innovative solutions.
+              Agentic AI Developer, LLM Application Developer, and Computer Science student.
             </p>
           </motion.div>
 
@@ -107,7 +107,8 @@ export function Footer() {
             <ul className="space-y-2">
               <li>
                 <motion.a
-                  href="#"
+                  href="/resume.pdf"
+                  download="Hussain-Raza-AI-Developer-CV.pdf"
                   whileHover={{ x: 4 }}
                   className="text-muted-foreground hover:text-accent transition-colors text-sm flex items-center gap-2"
                 >
@@ -116,20 +117,11 @@ export function Footer() {
               </li>
               <li>
                 <motion.a
-                  href="https://github.com"
+                  href="https://github.com/SheikhHussain15"
                   whileHover={{ x: 4 }}
                   className="text-muted-foreground hover:text-accent transition-colors text-sm flex items-center gap-2"
                 >
                   GitHub <ExternalLink className="w-3 h-3" />
-                </motion.a>
-              </li>
-              <li>
-                <motion.a
-                  href="https://vercel.com"
-                  whileHover={{ x: 4 }}
-                  className="text-muted-foreground hover:text-accent transition-colors text-sm flex items-center gap-2"
-                >
-                  Vercel <ExternalLink className="w-3 h-3" />
                 </motion.a>
               </li>
             </ul>
@@ -170,7 +162,7 @@ export function Footer() {
           viewport={{ once: true }}
           className="pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between text-sm text-muted-foreground"
         >
-          <p>&copy; {new Date().getFullYear()} Sheikh Hussain. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Hussain Raza. All rights reserved.</p>
           <p>Built with React, Next.js, TailwindCSS, and Framer Motion</p>
         </motion.div>
       </div>

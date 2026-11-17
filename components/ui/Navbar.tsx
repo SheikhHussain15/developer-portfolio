@@ -27,7 +27,7 @@ export function Navbar() {
     { label: 'About', href: '#about' },
     { label: 'Skills', href: '#skills' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Experience', href: '#experience' },
+    { label: 'Expertise', href: '#experience' },
     { label: 'Contact', href: '#contact' },
   ]
 
@@ -67,7 +67,7 @@ export function Navbar() {
             <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">SH</span>
             </div>
-            <span className="font-bold text-foreground hidden sm:inline">Sheikh Hussain</span>
+            <span className="font-bold text-foreground hidden sm:inline">Hussain Raza</span>
           </motion.div>
 
           {/* Desktop Navigation */}
@@ -88,7 +88,8 @@ export function Navbar() {
           {/* CTA Button - Desktop */}
           <div className="hidden md:flex items-center gap-4">
             <motion.a
-              href="#contact"
+              href="/resume.pdf"
+              download="Hussain-Raza-AI-Developer-CV.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-accent-foreground rounded-lg font-semibold hover:bg-accent/90 transition-colors"
@@ -100,6 +101,10 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <motion.button
+            type="button"
+            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-foreground"
@@ -110,6 +115,7 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         <motion.div
+          id="mobile-navigation"
           initial={false}
           animate={isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
           transition={{ duration: 0.3 }}
@@ -127,7 +133,8 @@ export function Navbar() {
               </motion.button>
             ))}
             <motion.a
-              href="#contact"
+              href="/resume.pdf"
+              download="Hussain-Raza-AI-Developer-CV.pdf"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="block w-full mt-4 px-4 py-2 bg-accent text-accent-foreground rounded-lg font-semibold text-center hover:bg-accent/90 transition-colors"

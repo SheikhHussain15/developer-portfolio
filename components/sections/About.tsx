@@ -6,15 +6,9 @@ import { ScrollReveal } from '../animations/ScrollReveal'
 
 export function About() {
   const features = [
-    { title: 'Full Stack Developer', description: 'Building modern web applications with React, Next.js, and Python', icon: '⚡' },
-    { title: 'AI Engineer', description: 'Leveraging AI APIs and agentic systems for intelligent automation', icon: '🤖' },
-    { title: 'Prompt Engineer', description: 'Crafting context-rich prompts for optimal AI model outputs', icon: '✨' },
-  ]
-
-  const stats = [
-    { label: 'Years Learning', value: '3+' },
-    { label: 'Projects Built', value: '20+' },
-    { label: 'Technologies', value: '25+' },
+    { title: 'Agentic AI & LLM Applications', description: 'Developing AI agents, LLM applications, RAG pipelines, and multi-agent systems.', icon: 'AI' },
+    { title: 'Full-Stack Development', description: 'Building with Python, FastAPI, Next.js, TypeScript, and relational databases.', icon: 'FS' },
+    { title: 'AI Automation', description: 'Applying Claude, OpenAI Agents SDK, and spec-driven development to automation projects.', icon: 'AU' },
   ]
 
   return (
@@ -24,32 +18,6 @@ export function About() {
           title="About Me"
           subtitle="Learn more about my background and expertise"
         />
-
-        {/* Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-3 gap-4 md:gap-8 my-12 px-4 md:px-0"
-        >
-          {stats.map((stat, index) => (
-            <div key={stat.label} className="text-center">
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="text-3xl md:text-4xl font-bold text-accent mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wider font-semibold">
-                  {stat.label}
-                </div>
-              </motion.div>
-            </div>
-          ))}
-        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center mt-16">
           {/* Left Column - Text */}
@@ -61,8 +29,7 @@ export function About() {
                 viewport={{ once: true }}
                 className="text-lg text-muted-foreground leading-relaxed"
               >
-                I&apos;m a passionate Computer Science student from Karachi, Pakistan, with a deep love for
-                building innovative solutions at the intersection of web development and artificial intelligence.
+                I&apos;m a Computer Science student based in Karachi, Pakistan, specializing in Agentic AI at GIAIC. I build AI agents, LLM applications, and full-stack projects.
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
@@ -71,9 +38,7 @@ export function About() {
                 viewport={{ once: true }}
                 className="text-lg text-muted-foreground leading-relaxed"
               >
-                My journey began with a fascination for how technology can solve real-world problems. Over the years,
-                I&apos;ve developed expertise in full-stack development, from crafting responsive user interfaces to
-                architecting robust backends with FastAPI and modern databases.
+                My project work includes a personal AI employee that connects email and social APIs, an AI-assisted todo application, and a responsive vehicle rental and ecommerce platform.
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
@@ -82,8 +47,7 @@ export function About() {
                 viewport={{ once: true }}
                 className="text-lg text-muted-foreground leading-relaxed"
               >
-                But my true passion lies in AI engineering. I&apos;m particularly interested in prompt engineering and
-                context engineering to unlock the full potential of large language models.
+                I&apos;m currently designing a multi-agent educational platform with a RAG workflow. I&apos;m seeking an AI Developer Internship or Junior AI Developer opportunity where I can continue learning and contribute to real products.
               </motion.p>
             </div>
           </ScrollReveal>

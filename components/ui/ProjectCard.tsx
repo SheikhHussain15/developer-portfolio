@@ -207,8 +207,8 @@ export function ProjectCard({
         </motion.div>
 
         {/* Footer */}
-        <div className="p-6 md:p-8 border-t border-border/30 flex gap-3 pt-4">
-          <motion.a
+        {(github || demo || challenges || lessonsLearned || architecture) && <div className="p-6 md:p-8 border-t border-border/30 flex flex-wrap gap-3 pt-4">
+          {github && <motion.a
             href={github}
             target="_blank"
             rel="noopener noreferrer"
@@ -218,8 +218,8 @@ export function ProjectCard({
           >
             <CodeIcon className="w-4 h-4" />
             GitHub
-          </motion.a>
-          <motion.a
+          </motion.a>}
+          {demo && <motion.a
             href={demo}
             target="_blank"
             rel="noopener noreferrer"
@@ -229,7 +229,7 @@ export function ProjectCard({
           >
             <ExternalLink className="w-4 h-4" />
             Live Demo
-          </motion.a>
+          </motion.a>}
 
           {/* Expand Details Button */}
           {(challenges || lessonsLearned || architecture) && (
@@ -242,7 +242,7 @@ export function ProjectCard({
               {showDetails ? 'Less' : 'More'}
             </motion.button>
           )}
-        </div>
+        </div>}
       </div>
     </motion.div>
   )
