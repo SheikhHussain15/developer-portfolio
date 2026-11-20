@@ -4,30 +4,27 @@ import { About } from '@/components/sections/About'
 import { SkillsInteractive as Skills } from '@/components/sections/SkillsInteractive'
 import { Projects } from '@/components/sections/Projects'
 import { Timeline } from '@/components/sections/Timeline'
-import { CurrentlyBuilding } from '@/components/sections/CurrentlyBuilding'
-import { Experience } from '@/components/sections/Experience'
 import { Education } from '@/components/sections/Education'
-import { GitHub } from '@/components/sections/GitHub'
 import { Contact } from '@/components/sections/Contact'
 import { Footer } from '@/components/sections/Footer'
 
 export default function Page() {
   return (
     <>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-background focus:px-4 focus:py-3">
+        Skip to content
+      </a>
       <Navbar />
-      <main className="overflow-x-clip bg-background">
+      <main id="main-content" className="overflow-x-clip bg-background">
         <Hero />
         <About />
         <Skills />
         <Projects />
         <Timeline />
-        <CurrentlyBuilding />
-        <Experience />
         <Education />
-        <GitHub />
         <Contact />
-        <Footer />
       </main>
+      <Footer />
     </>
   )
 }

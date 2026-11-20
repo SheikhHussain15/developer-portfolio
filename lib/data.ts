@@ -1,70 +1,55 @@
 export const skills = {
   programming: ['Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS'],
-  ai: ['OpenAI API', 'Claude API', 'Gemini API', 'OpenAI Agents SDK', 'OpenRouter'],
+  frontend: ['Next.js', 'React', 'Tailwind CSS', 'Docusaurus'],
+  ai: ['OpenAI Agents SDK', 'OpenAI API', 'Claude API', 'Gemini API', 'OpenRouter'],
   rag: ['LlamaIndex', 'ChromaDB', 'Embeddings', 'Document Ingestion'],
   backend: ['FastAPI', 'REST APIs', 'Async Programming'],
-  frontend: ['Next.js', 'React', 'Tailwind CSS', 'shadcn/ui'],
   databases: ['PostgreSQL', 'MySQL', 'Neon SQL', 'Prisma ORM'],
   observability: ['Langfuse'],
-  tools: ['Git', 'GitHub', 'VS Code', 'Claude Code', 'Figma (basic)', 'Canva', 'MS Office', 'Photoshop', 'Illustrator', 'Spec-Driven Development', 'Sanity CMS'],
+  tools: ['Git', 'GitHub', 'Spec-Kit Plus', 'Claude Code', 'AI Coding Tools', 'VS Code', 'Sanity CMS'],
+
 }
 
 export const projects = [
   {
-    title: 'Personal AI Employee',
-    description: 'An autonomous AI automation system for email and social media workflows.',
-    problem: 'Routine email and social publishing tasks can require repeated manual effort.',
-    solution: 'Built an agent that categorizes Gmail, drafts context-aware replies with Claude, and connects social platform APIs.',
-    features: ['Reads and categorizes Gmail messages', 'Drafts context-aware replies with Claude API', 'Automates email responses', 'Integrates LinkedIn and Facebook APIs for social content'],
-    tech: ['Python', 'Claude API', 'Gmail API', 'LinkedIn API', 'Facebook Graph API', 'MySQL'],
-    github: '',
+    number: '01',
+    title: 'Personal AI FTE',
+    category: 'AI automation',
+    description: 'An AI employee concept for Gmail and social-content workflows, built around Python and MySQL.',
+    tech: ['Python', 'MySQL'],
+    github: 'https://github.com/SheikhHussain15/personal-AI-FTE',
     demo: '',
-    timeline: '2025',
-    architecture: 'Python automation integrating Gmail, Claude, LinkedIn, Facebook, and MySQL.',
+    status: 'Project',
   },
   {
-    title: 'AI Educational Platform',
-    description: 'A multi-agent educational SaaS platform currently in development.',
-    problem: 'Designing an educational platform around AI-assisted tutoring, assessment, and learning workflows.',
-    solution: 'Planning a 10-agent architecture with RAG-based document retrieval and a full-stack learning experience.',
-    features: ['Designing a 10-agent architecture', 'AI tutoring and assessment', 'Educational content generation', 'RAG-based document retrieval', 'Intelligent learning workflows'],
-    tech: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'OpenAI Agents SDK', 'LlamaIndex', 'ChromaDB', 'PostgreSQL', 'Prisma ORM', 'Langfuse', 'OpenRouter'],
+    number: '02',
+    title: 'AI Todo App',
+    category: 'LLM application',
+    description: 'A task manager with individual accounts and a chatbot that can take actions on your tasks.',
+    tech: ['Next.js', 'Tailwind CSS', 'Python', 'OpenAI Agents SDK', 'Neon'],
     github: '',
-    demo: '',
-    timeline: '2026–Present · In Development',
-    architecture: 'Planned stack: FastAPI and PostgreSQL/Prisma, with a Next.js and TypeScript frontend; LlamaIndex and ChromaDB for RAG, OpenAI Agents SDK, Langfuse, and OpenRouter.',
+    demo: 'https://frontend-swart-chi-63.vercel.app/',
+    status: 'Live demo',
   },
   {
-    title: 'Full-Stack Todo App with AI Chatbot',
-    description: 'A task-management application with natural-language AI assistance.',
-    problem: 'Managing tasks through a chatbot requires secure user-specific data and reliable task actions.',
-    solution: 'Built a full-stack app with authentication, per-user data isolation, and natural-language task operations.',
-    features: ['Create, complete, and delete tasks through natural language', 'AI chatbot integration', 'User authentication and per-user data isolation'],
-    tech: ['Next.js', 'FastAPI', 'OpenAI Agents SDK', 'Neon SQL'],
+    number: '03',
+    title: 'Car Rental / Ecommerce App',
+    category: 'Full-stack web',
+    description: 'A responsive car-rental and buying experience built with Next.js and Sanity CMS.',
+    tech: ['Next.js', 'Tailwind CSS', 'JavaScript', 'Sanity CMS'],
     github: '',
     demo: '',
-    timeline: '2025',
-  },
-  {
-    title: 'Car Rental / Ecommerce Platform',
-    description: 'A responsive vehicle rental and ecommerce platform.',
-    problem: 'A vehicle catalog needs a responsive way to browse and manage product content.',
-    solution: 'Built a responsive Next.js platform with dynamic content managed through Sanity CMS.',
-    features: ['Browse, rent, and purchase vehicles', 'Dynamic product management', 'Responsive interface'],
-    tech: ['Next.js', 'JavaScript', 'Tailwind CSS', 'Sanity CMS'],
-    github: '',
-    demo: '',
-    timeline: '2024',
+    status: 'Project',
   },
 ]
 
 export const certifications = [
-  { name: 'Agentic AI Specialization (Ongoing)', date: '2024–Present', issuer: 'GIAIC' },
-  { name: 'Spec-Driven Development with Claude Code', date: '2026', issuer: 'GIAIC' },
-  { name: 'OpenAI Agents SDK', date: '2025', issuer: 'GIAIC' },
-  { name: 'Python, TypeScript, Next.js, React & FastAPI', date: '2024', issuer: 'GIAIC' },
-  { name: 'Prompt & Context Engineering', date: '', issuer: 'GIAIC' },
-  { name: 'CIT Certificate', date: '2023', issuer: 'ARFA Tech' },
+  { name: 'Agentic AI Specialization', date: '2024–Present', issuer: 'GIAIC', status: 'Ongoing' },
+  { name: 'Spec-Driven Development with Claude Code', date: '2026', issuer: 'GIAIC', status: 'Training' },
+  { name: 'OpenAI Agents SDK', date: '2025', issuer: 'GIAIC', status: 'Training' },
+  { name: 'Python, TypeScript, Next.js, React & FastAPI', date: '2024', issuer: 'GIAIC', status: 'Training' },
+  { name: 'Prompt & Context Engineering', date: '', issuer: 'GIAIC', status: 'Training' },
+  { name: 'CIT Certificate', date: '2023', issuer: 'ARFA Tech', status: 'Completed' },
 ]
 
 export const socials = {
@@ -76,17 +61,12 @@ export const socials = {
 }
 
 export const education = [
-  { degree: 'Agentic AI Specialization', school: 'GIAIC, Karachi', graduation: '2024–Present' },
-  { degree: 'Intermediate, Computer Science', school: 'G.DBC Asifabad, Karachi', graduation: '2026' },
+  { degree: 'Intermediate, Computer Science', school: 'G.D.B.C Asifabad, Karachi', graduation: '2026' },
   { degree: 'Matriculation, Computer Science', school: 'Public Secondary School, Karachi', graduation: '2024' },
-  { degree: 'CIT Certificate', school: 'ARFA Tech, Karachi', graduation: '2023' },
+  { degree: 'Agentic AI Specialization', school: 'GIAIC, Karachi', graduation: '2024–Present' },
 ]
 
-export const githubStats = {
-  username: 'SheikhHussain15',
-}
-
-export const currentlyLearning = []
+export const githubStats = { username: 'SheikhHussain15' }
 
 export const aiProjects = [
   {

@@ -2,8 +2,38 @@
 
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Float, RoundedBox, useVideoTexture } from '@react-three/drei'
-import { Suspense, useEffect, useMemo, useRef } from 'react'
+import { Component, Suspense, useEffect, useMemo, useRef, type ReactNode } from 'react'
 import { Group, SRGBColorSpace, VideoTexture } from 'three'
+
+type SceneBoundaryProps = { children: ReactNode; fallback: ReactNode }
+type SceneBoundaryState = { hasError: boolean }
+
+class SceneBoundary extends Component<SceneBoundaryProps, SceneBoundaryState> {
+  state: SceneBoundaryState = { hasError: false }
+
+  static getDerivedStateFromError(): SceneBoundaryState {
+    return { hasError: true }
+  }
+
+  render() {
+    return this.state.hasError ? this.props.fallback : this.props.children
+  }
+}
+
+function PortraitVideoFallback({ onVideoReady }: PortfolioSceneProps) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    onVideoReady?.(videoRef.current)
+    return () => onVideoReady?.(null)
+  }, [onVideoReady])
+
+  return (
+    <div className="scene-fallback">
+      <video ref={videoRef} src="/portfolio-motion.mp4" autoPlay muted loop playsInline preload="metadata" aria-label="Hussain working at a laptop" />
+    </div>
+  )
+}
 
 type PortfolioSceneProps = {
   onVideoReady?: (video: HTMLVideoElement | null) => void
@@ -81,21 +111,25 @@ function OrbitingElements() {
 }
 
 export function PortfolioScene({ onVideoReady }: PortfolioSceneProps) {
+  const fallback = <PortraitVideoFallback onVideoReady={onVideoReady} />
+
   return (
-    <Canvas
-      aria-hidden="true"
-      dpr={[1, 1.5]}
-      camera={{ position: [0, 0, 8.7], fov: 34 }}
-      gl={{ alpha: true, antialias: true, powerPreference: 'low-power' }}
-      fallback={<div className="scene-fallback">Enable WebGL to view the 3D portrait.</div>}
-    >
-      <ambientLight intensity={1.35} />
-      <directionalLight position={[3, 4, 5]} intensity={2.2} color="#ffe1ad" />
-      <pointLight position={[-4, -1, 2]} intensity={2.4} color="#bd7f43" />
-      <Suspense fallback={null}>
-        <VideoDisplay onVideoReady={onVideoReady} />
-        <OrbitingElements />
-      </Suspense>
-    </Canvas>
+    <SceneBoundary fallback={fallback}>
+      <Canvas
+        aria-hidden="true"
+        dpr={[1, 1.5]}
+        camera={{ position: [0, 0, 8.7], fov: 34 }}
+        gl={{ alpha: true, antialias: true, powerPreference: 'low-power' }}
+        fallback={fallback}
+      >
+        <ambientLight intensity={1.35} />
+        <directionalLight position={[3, 4, 5]} intensity={2.2} color="#ffe1ad" />
+        <pointLight position={[-4, -1, 2]} intensity={2.4} color="#bd7f43" />
+        <Suspense fallback={null}>
+          <VideoDisplay onVideoReady={onVideoReady} />
+          <OrbitingElements />
+        </Suspense>
+      </Canvas>
+    </SceneBoundary>
   )
 }

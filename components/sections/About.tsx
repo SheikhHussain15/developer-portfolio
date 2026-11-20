@@ -1,83 +1,35 @@
-'use client'
-
-import { motion } from 'framer-motion'
+import { Bot, Code2, Database, Workflow } from 'lucide-react'
 import { SectionHeading } from '../ui/SectionHeading'
-import { ScrollReveal } from '../animations/ScrollReveal'
+
+const focusAreas = [
+  { icon: Bot, title: 'Agentic AI', description: 'Exploring tool-using agents and workflows with the OpenAI Agents SDK.' },
+  { icon: Database, title: 'LLM applications & RAG', description: 'Building applications that combine language models with retrieval and structured data.' },
+  { icon: Workflow, title: 'AI automation', description: 'Connecting APIs and repeatable workflows to make everyday tasks more useful.' },
+  { icon: Code2, title: 'Full-stack development', description: 'Creating responsive interfaces and application backends with Next.js and FastAPI.' },
+]
 
 export function About() {
-  const features = [
-    { title: 'Agentic AI & LLM Applications', description: 'Developing AI agents, LLM applications, RAG pipelines, and multi-agent systems.', icon: 'AI' },
-    { title: 'Full-Stack Development', description: 'Building with Python, FastAPI, Next.js, TypeScript, and relational databases.', icon: 'FS' },
-    { title: 'AI Automation', description: 'Applying Claude, OpenAI Agents SDK, and spec-driven development to automation projects.', icon: 'AU' },
-  ]
-
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-white/2.5">
-      <div className="max-w-4xl mx-auto">
-        <SectionHeading
-          title="About Me"
-          subtitle="Learn more about my background and expertise"
-        />
-
-        <div className="grid md:grid-cols-2 gap-12 items-center mt-16">
-          {/* Left Column - Text */}
-          <ScrollReveal>
-            <div className="space-y-6">
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-lg text-muted-foreground leading-relaxed"
-              >
-                I&apos;m a Computer Science student based in Karachi, Pakistan, specializing in Agentic AI at GIAIC. I build AI agents, LLM applications, and full-stack projects.
-              </motion.p>
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                viewport={{ once: true }}
-                className="text-lg text-muted-foreground leading-relaxed"
-              >
-                My project work includes a personal AI employee that connects email and social APIs, an AI-assisted todo application, and a responsive vehicle rental and ecommerce platform.
-              </motion.p>
-              <motion.p
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-lg text-muted-foreground leading-relaxed"
-              >
-                I&apos;m currently designing a multi-agent educational platform with a RAG workflow. I&apos;m seeking an AI Developer Internship or Junior AI Developer opportunity where I can continue learning and contribute to real products.
-              </motion.p>
-            </div>
-          </ScrollReveal>
-
-          {/* Right Column - Features */}
-          <div className="space-y-6">
-            {features.map((feature, index) => (
-              <ScrollReveal key={feature.title} delay={index * 0.1}>
-                <motion.div
-                  whileHover={{ x: 12, y: -4 }}
-                  className="relative group p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-accent/50 transition-all"
-                >
-                  {/* Glow effect */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur -z-10" />
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="text-3xl">{feature.icon}</div>
-                    <div className="flex-grow">
-                      <h3 className="text-lg font-semibold mb-1 text-foreground group-hover:text-accent transition-colors">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              </ScrollReveal>
-            ))}
+    <section id="about" className="section-shell scroll-mt-20">
+      <SectionHeading title="Curiosity, turned into working software." subtitle="A little context on what I’m learning and building." />
+      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div>
+          <p className="eyebrow mb-5">A bit about me</p>
+          <div className="space-y-5 text-[15px] leading-8 text-slate-300 sm:text-base">
+            <p>I&apos;m a Computer Science student in Karachi, Pakistan, pursuing an Agentic AI specialization at GIAIC. I learn by turning new ideas into practical projects and by paying attention to the details that make software useful.</p>
+            <p>My work sits between AI applications and full-stack development: from an AI-assisted task manager to an automation concept for email and social workflows. I&apos;m currently designing an educational platform with a multi-agent and retrieval workflow.</p>
+            <p>I&apos;m looking for an AI developer internship where I can contribute, learn from a team, and keep building thoughtful products.</p>
           </div>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {focusAreas.map(({ icon: Icon, title, description }, index) => (
+            <article key={title} className="group rounded-2xl border border-white/[0.08] bg-white/[0.025] p-5 transition-colors hover:border-indigo-300/30 hover:bg-indigo-300/[0.035] sm:p-6">
+              <span className="mb-5 grid size-10 place-items-center rounded-xl border border-indigo-300/20 bg-indigo-300/[0.07] text-indigo-200"><Icon aria-hidden="true" size={19} /></span>
+              <p className="mb-2 font-mono text-[10px] tracking-[0.15em] text-slate-600">0{index + 1}</p>
+              <h3 className="mb-2 font-serif text-lg font-medium text-white">{title}</h3>
+              <p className="text-sm leading-6 text-slate-400">{description}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>

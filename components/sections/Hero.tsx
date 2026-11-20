@@ -1,20 +1,27 @@
 'use client'
 
-import { useCallback, useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowDown, ArrowRight, Code, Download, Link as LinkIcon, Mail, Pause, Play } from 'lucide-react'
-import { CustomButton } from '../ui/CustomButton'
-import { PortfolioScene } from '../ui/PortfolioScene'
+import { ArrowDown, ArrowDownRight, ArrowRight, Code2, Link2, Mail, Pause, Play } from 'lucide-react'
 
-const resumePath = '/resume.pdf'
-const videoPath = '/portfolio-motion.mp4'
+const PortfolioScene = dynamic(() => import('../ui/PortfolioScene').then((module) => module.PortfolioScene), {
+  ssr: false,
+  loading: () => <div className="scene-fallback h-full w-full">Loading portrait</div>,
+})
 
 export function Hero() {
   const prefersReducedMotion = useReducedMotion()
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(true)
-  const handleVideoReady = useCallback((video: HTMLVideoElement | null) => {
-    videoRef.current = video
+  const [supportsWebGL, setSupportsWebGL] = useState(false)
+  const handleVideoReady = useCallback((video: HTMLVideoElement | null) => { videoRef.current = video }, [])
+
+  useEffect(() => {
+    const canvas = document.createElement('canvas')
+    const context = canvas.getContext('webgl2') || canvas.getContext('webgl')
+    const isSupported = Boolean(context)
+    setSupportsWebGL(isSupported)
   }, [])
 
   const toggleVideo = () => {
@@ -30,82 +37,78 @@ export function Hero() {
   }
 
   return (
-    <section id="hero" className="hero-stage relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden px-4 pb-12 pt-24 sm:px-6 lg:px-8">
+    <section id="hero" className="relative flex min-h-[100svh] scroll-mt-0 items-center overflow-hidden px-5 pb-12 pt-28 sm:px-8 lg:px-10">
       <div className="hero-grid pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-accent/10 blur-[120px]" aria-hidden="true" />
-      <div className="pointer-events-none absolute -right-32 bottom-0 h-96 w-96 rounded-full bg-orange-900/10 blur-[120px]" aria-hidden="true" />
-
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-4 lg:grid-cols-[0.92fr_1.08fr] lg:gap-2">
+      <div className="pointer-events-none absolute -right-44 top-[13%] size-[28rem] rounded-full bg-indigo-500/10 blur-[120px]" aria-hidden="true" />
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-4">
         <motion.div
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="relative z-10 mx-auto w-full max-w-2xl text-center lg:mx-0 lg:text-left"
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+          className="relative z-10 mx-auto w-full max-w-2xl lg:mx-0"
         >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-sm font-medium text-accent">
-            <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_12px_rgba(214,161,95,.8)]" />
-            Open to AI Developer Internship opportunities
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            <span className="eyebrow rounded-full border border-sky-300/20 bg-sky-300/5 px-3 py-1.5">Agentic AI Developer</span>
+            <span className="inline-flex items-center gap-2 text-xs text-slate-300"><span className="size-1.5 rounded-full bg-emerald-400" /> Available for internships</span>
           </div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Karachi, Pakistan · 24°51&apos;N</p>
-          <h1 className="text-balance text-5xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-6xl lg:text-7xl xl:text-8xl">
-            Hussain <span className="text-accent">Raza</span>
+          <p className="mb-4 font-mono text-xs text-slate-500">KARACHI, PAKISTAN <span className="px-1 text-indigo-300">/</span> 24.86° N</p>
+          <h1 className="max-w-3xl text-balance font-serif text-[clamp(2.65rem,10vw,4rem)] font-semibold leading-[0.99] tracking-[-0.055em] text-white lg:text-[clamp(3.2rem,4vw,3.75rem)]">
+            Building intelligent systems that <span className="bg-gradient-to-r from-indigo-300 via-sky-200 to-indigo-300 bg-clip-text text-transparent">think, act & create.</span>
           </h1>
-          <p className="mt-5 text-lg font-medium leading-relaxed text-accent sm:text-xl">
-            Agentic AI Developer <span className="text-muted-foreground">·</span> LLM Application Developer <span className="text-muted-foreground">·</span> CS Student
+          <p className="mt-6 max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+            I&apos;m Hussain Raza, a Computer Science student and developer focused on building intelligent AI applications, agentic workflows, and modern full-stack experiences.
           </p>
-          <p className="mt-5 max-w-xl text-base leading-8 text-muted-foreground md:text-lg">
-            I build autonomous AI agents, LLM applications, RAG pipelines, and full-stack automation systems with Python, FastAPI, and modern web technologies.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
-            <CustomButton variant="primary" onClick={() => document.querySelector('#projects')?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' })}>
-              View Projects <ArrowRight className="h-4 w-4" />
-            </CustomButton>
-            <a href={resumePath} download="Hussain-Raza-AI-Developer-CV.pdf" className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-accent/40 bg-card/70 px-5 py-3 font-semibold text-foreground transition-colors hover:border-accent hover:bg-accent/10">
-              Download Resume <Download className="h-4 w-4 text-accent" />
+          <div className="mt-8 flex flex-col gap-3 min-[380px]:flex-row">
+            <a href="#projects" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-indigo-300 px-5 font-semibold text-slate-950 transition hover:bg-indigo-200">
+              Explore my work <ArrowRight aria-hidden="true" size={17} />
+            </a>
+            <a href="#contact" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.03] px-5 font-medium text-white transition hover:border-sky-200/50 hover:bg-white/[0.06]">
+              Let&apos;s connect <ArrowDownRight aria-hidden="true" size={17} />
             </a>
           </div>
-          <div className="mt-7 flex items-center justify-center gap-3 lg:justify-start">
-            <a aria-label="GitHub profile" href="https://github.com/SheikhHussain15" target="_blank" rel="noopener noreferrer" className="rounded-lg border border-border bg-card/70 p-3 text-muted-foreground transition-colors hover:border-accent/50 hover:text-accent"><Code className="h-5 w-5" /></a>
-            <a aria-label="LinkedIn profile" href="https://linkedin.com/in/hussain-raza-0704a32b6" target="_blank" rel="noopener noreferrer" className="rounded-lg border border-border bg-card/70 p-3 text-muted-foreground transition-colors hover:border-accent/50 hover:text-accent"><LinkIcon className="h-5 w-5" /></a>
-            <a aria-label="Email Hussain Raza" href="mailto:hr773-774@gmail.com" className="rounded-lg border border-border bg-card/70 p-3 text-muted-foreground transition-colors hover:border-accent/50 hover:text-accent"><Mail className="h-5 w-5" /></a>
+          <div className="mt-7 flex items-center gap-3">
+            <a aria-label="GitHub profile" href="https://github.com/SheikhHussain15" target="_blank" rel="noopener noreferrer" className="grid size-10 place-items-center rounded-xl border border-white/10 text-slate-300 transition hover:border-indigo-300/50 hover:text-white"><Code2 aria-hidden="true" size={18} /></a>
+            <a aria-label="LinkedIn profile" href="https://linkedin.com/in/hussain-raza-0704a32b6" target="_blank" rel="noopener noreferrer" className="grid size-10 place-items-center rounded-xl border border-white/10 text-slate-300 transition hover:border-indigo-300/50 hover:text-white"><Link2 aria-hidden="true" size={18} /></a>
+            <a aria-label="Email Hussain Raza" href="mailto:hr773-774@gmail.com" className="grid size-10 place-items-center rounded-xl border border-white/10 text-slate-300 transition hover:border-indigo-300/50 hover:text-white"><Mail aria-hidden="true" size={18} /></a>
+            <span className="ml-1 h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" aria-hidden="true" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-slate-500">Building with purpose</span>
           </div>
         </motion.div>
 
-        <div className="relative mx-auto w-full max-w-[760px] lg:-mr-10">
-          <div className="scene-aura pointer-events-none absolute inset-[12%] rounded-full bg-accent/15 blur-[90px]" aria-hidden="true" />
-          {prefersReducedMotion ? (
-            <div className="relative aspect-[1.2] w-full overflow-hidden rounded-[2rem] border border-accent/25 bg-card/70 p-3 shadow-[0_28px_100px_rgba(0,0,0,.48)] sm:aspect-[1.35]">
+        <div className="relative mx-auto w-full max-w-[680px] lg:ml-auto">
+          <div className="scene-aura pointer-events-none absolute inset-[10%] rounded-full blur-[80px]" aria-hidden="true" />
+          <div className={`relative w-full overflow-hidden rounded-[1.5rem] border border-white/10 bg-card shadow-2xl ${supportsWebGL && !prefersReducedMotion ? 'h-[290px] sm:h-[420px] lg:h-[min(68vh,610px)]' : 'aspect-[1.18]'}`}>
+            {supportsWebGL && !prefersReducedMotion ? (
+              <>
+                <p className="sr-only">Animated 3D portrait video of Hussain working at a laptop.</p>
+                <PortfolioScene onVideoReady={handleVideoReady} />
+              </>
+            ) : (
               <video
-                className="h-full w-full rounded-[1.5rem] object-cover"
-                src={videoPath}
-                controls
+                ref={videoRef}
+                className="h-full w-full object-cover"
+                src="/portfolio-motion.mp4"
+                autoPlay={prefersReducedMotion !== true}
+                loop={prefersReducedMotion !== true}
+                controls={prefersReducedMotion === true}
                 playsInline
                 muted
                 preload="metadata"
-                aria-label="Hussain working at a laptop, portfolio profile video"
+                aria-label="Hussain working at a laptop"
               />
-            </div>
-          ) : (
-            <div className="relative h-[340px] w-full sm:h-[440px] lg:h-[min(72vh,660px)]">
-              <p className="sr-only">3D animated video portrait of Hussain working at a laptop, surrounded by warm floating elements.</p>
-              <PortfolioScene onVideoReady={handleVideoReady} />
-              <div className="pointer-events-none absolute bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-background/75 px-3 py-2 text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground shadow-xl backdrop-blur-md sm:bottom-9">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_10px_rgba(214,161,95,.8)]" />
-                Interactive portrait
+            )}
+            {!prefersReducedMotion && (
+              <div className="pointer-events-none absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-[#080a12]/75 px-3 py-2 backdrop-blur-md sm:inset-x-8 sm:bottom-8 sm:px-4">
+                <span className="flex min-w-0 items-center gap-2 text-[10px] font-medium uppercase tracking-[0.13em] text-slate-300 sm:text-xs"><span className="size-1.5 shrink-0 rounded-full bg-sky-300" /> A little about how I work</span>
+                <button type="button" onClick={toggleVideo} aria-label={isPlaying ? 'Pause portrait video' : 'Play portrait video'} className="pointer-events-auto grid size-9 shrink-0 place-items-center rounded-full border border-white/15 bg-white/5 text-white transition hover:border-sky-200/60">
+                  {isPlaying ? <Pause aria-hidden="true" size={15} /> : <Play aria-hidden="true" size={15} />}
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={toggleVideo}
-                aria-label={isPlaying ? 'Pause portrait video' : 'Play portrait video'}
-                className="absolute bottom-4 right-3 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-background/75 text-foreground shadow-xl backdrop-blur-md transition hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:bottom-8 sm:right-7"
-              >
-                {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-              </button>
-            </div>
-          )}
-          <div className="pointer-events-none absolute -bottom-1 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground/80 sm:flex">
-            <ArrowDown className="h-3 w-3" /> Scroll to explore
+            )}
           </div>
+          <a href="#about" className="absolute -bottom-8 left-1/2 hidden -translate-x-1/2 items-center gap-2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.17em] text-slate-500 transition hover:text-sky-200 sm:flex">
+            Scroll to explore <ArrowDown aria-hidden="true" size={14} />
+          </a>
         </div>
       </div>
     </section>
