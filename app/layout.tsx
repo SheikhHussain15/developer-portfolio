@@ -1,59 +1,44 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Starfield } from '@/components/ui/Starfield'
-import { CursorGlow } from '@/components/ui/CursorGlow'
 import './globals.css'
 
+const siteUrl = 'https://developer-portfolio-black-iota.vercel.app'
+
 export const metadata: Metadata = {
-  title: 'Hussain Raza | 3D Agentic AI Developer Portfolio',
-  description: 'Explore Hussain Raza’s interactive 3D portfolio, AI projects, LLM applications, RAG systems, and full-stack work from Karachi, Pakistan.',
-  generator: 'v0.app',
-  keywords: ['Agentic AI Developer', 'LLM Application Developer', 'Python', 'FastAPI', 'RAG', 'Karachi'],
+  metadataBase: new URL(siteUrl),
+  title: 'Hussain Raza — Agentic AI & Full-Stack Developer',
+  description: 'Hussain Raza is a Computer Science student in Karachi building agentic AI applications, LLM workflows, and modern full-stack experiences.',
+  keywords: ['Hussain Raza', 'Agentic AI Developer', 'LLM Applications', 'Full-Stack Developer', 'Karachi'],
   authors: [{ name: 'Hussain Raza' }],
   openGraph: {
-    title: 'Hussain Raza | 3D Agentic AI Developer Portfolio',
-    description: 'An interactive 3D portfolio featuring Hussain Raza’s AI projects, LLM applications, RAG systems, and full-stack work.',
+    title: 'Hussain Raza — Agentic AI & Full-Stack Developer',
+    description: 'Building intelligent applications, agentic workflows, and thoughtful full-stack experiences.',
+    url: siteUrl,
+    siteName: 'Hussain Raza Portfolio',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Hussain Raza — Agentic AI & Full-Stack Developer',
+    description: 'Building intelligent applications, agentic workflows, and thoughtful full-stack experiences.',
+  },
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
+    icon: [{ url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' }, { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' }, { url: '/icon.svg', type: 'image/svg+xml' }],
     apple: '/apple-icon.png',
   },
+  robots: { index: true, follow: true },
 }
 
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: dark)', color: '#100e0c' },
-  ],
+  themeColor: '#080a12',
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="dark bg-background">
-      <body className="antialiased relative">
-        <Starfield />
-        <CursorGlow />
-        <div className="relative z-10">
-          {children}
-        </div>
+      <body>
+        {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

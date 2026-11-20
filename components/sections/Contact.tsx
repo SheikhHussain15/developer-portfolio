@@ -1,186 +1,38 @@
-'use client'
-
-import { motion } from 'framer-motion'
-import { Mail, MapPin, Link as LinkIcon, Code, Send, Phone } from 'lucide-react'
-import { useState } from 'react'
+import { ArrowUpRight, Code2, Link2, Mail, MapPin } from 'lucide-react'
+import { socials } from '@/lib/data'
 import { SectionHeading } from '../ui/SectionHeading'
-import { AnimatedCard } from '../ui/AnimatedCard'
-import { ScrollReveal } from '../animations/ScrollReveal'
-import { CustomButton } from '../ui/CustomButton'
+
+const contacts = [
+  { label: 'Email', value: socials.email, href: `mailto:${socials.email}`, icon: Mail },
+  { label: 'GitHub', value: 'github.com/SheikhHussain15', href: socials.github, icon: Code2 },
+  { label: 'LinkedIn', value: 'linkedin.com/in/hussain-raza-0704a32b6', href: socials.linkedin, icon: Link2 },
+  { label: 'Location', value: socials.location, href: 'https://maps.google.com/?q=Karachi,Pakistan', icon: MapPin },
+]
 
 export function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
-
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    // TODO: Implement form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setFormData({ name: '', email: '', message: '' })
-    }, 1000)
-  }
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'hr773-774@gmail.com',
-      href: 'mailto:hr773-774@gmail.com',
-    },
-    {
-      icon: Phone,
-      label: 'Phone',
-      value: '+92 370 0722474',
-      href: 'tel:+923700722474',
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Karachi, Pakistan',
-      href: 'https://maps.google.com/?q=Karachi,Pakistan',
-    },
-    {
-      icon: Code,
-      label: 'GitHub',
-      value: 'github.com/SheikhHussain15',
-      href: 'https://github.com/SheikhHussain15',
-    },
-    {
-      icon: LinkIcon,
-      label: 'LinkedIn',
-      value: 'linkedin.com/in/hussain-raza-0704a32b6',
-      href: 'https://linkedin.com/in/hussain-raza-0704a32b6',
-    },
-  ]
-
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
-      <div className="max-w-6xl mx-auto">
-        <SectionHeading
-          title="Get In Touch"
-          subtitle="Let's build something amazing together"
-        />
-
-        <div className="grid md:grid-cols-2 gap-12 mt-16">
-          {/* Contact Form */}
-          <ScrollReveal>
-            <motion.form
-              onSubmit={handleSubmit}
-              className="space-y-6 p-8 rounded-2xl glassmorphism group"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              {/* Top accent line */}
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-t-2xl" />
-
-              <div>
-                <label className="block text-sm font-semibold text-foreground mb-3">
-                  Full Name
-                </label>
-                <motion.input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  whileFocus={{ scale: 1.01 }}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-foreground placeholder-muted-foreground focus:border-accent/50 focus:bg-white/10 focus:outline-none transition-all"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-foreground mb-3">
-                  Email Address
-                </label>
-                <motion.input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  whileFocus={{ scale: 1.01 }}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-foreground placeholder-muted-foreground focus:border-accent/50 focus:bg-white/10 focus:outline-none transition-all"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-foreground mb-3">
-                  Message
-                </label>
-                <motion.textarea
-                  required
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  rows={5}
-                  whileFocus={{ scale: 1.01 }}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-foreground placeholder-muted-foreground focus:border-accent/50 focus:bg-white/10 focus:outline-none transition-all resize-none"
-                  placeholder="Your message..."
-                />
-              </div>
-
-              <CustomButton variant="primary" className="w-full">
-                {isSubmitting ? (
-                  <motion.span animate={{ opacity: [0.6, 1] }} transition={{ repeat: Infinity }}>
-                    Sending...
-                  </motion.span>
-                ) : (
-                  <>
-                    Send Message
-                    <Send className="w-4 h-4" />
-                  </>
-                )}
-              </CustomButton>
-            </motion.form>
-          </ScrollReveal>
-
-          {/* Contact Info */}
-          <ScrollReveal delay={0.1}>
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => {
-                const Icon = info.icon
-                return (
-                  <motion.a
-                    key={info.label}
-                    href={info.href}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    whileHover={{ x: 8, y: -4 }}
-                    className="relative group flex items-start gap-4 p-6 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md hover:border-accent/50 transition-all"
-                  >
-                    {/* Glow effect */}
-                    <div className="absolute -inset-0.5 bg-gradient-to-r from-accent/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur -z-10" />
-
-                    <div className="flex-shrink-0">
-                      <motion.div
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        className="flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-br from-accent/30 to-accent/10 border border-accent/50 group-hover:border-accent/80 transition-colors"
-                      >
-                        <Icon className="w-6 h-6 text-accent" />
-                      </motion.div>
-                    </div>
-                    <div className="flex-grow">
-                      <p className="text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
-                        {info.label}
-                      </p>
-                      <p className="text-muted-foreground text-sm group-hover:text-foreground transition-colors">
-                        {info.value}
-                      </p>
-                    </div>
-                  </motion.a>
-                )
-              })}
-            </div>
-          </ScrollReveal>
+    <section id="contact" className="scroll-mt-16 border-t border-white/[0.06] bg-white/[0.012]">
+      <div className="section-shell">
+        <SectionHeading title="Let’s build something useful." subtitle="Open to AI developer internships and thoughtful conversations about technology." />
+        <div className="mx-auto grid max-w-4xl gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div className="rounded-2xl border border-indigo-300/15 bg-gradient-to-br from-indigo-300/[0.08] to-sky-300/[0.025] p-6 sm:p-8">
+            <p className="eyebrow">Get in touch</p>
+            <h3 className="mt-5 font-serif text-2xl font-medium text-white sm:text-3xl">Have an opportunity or a project in mind?</h3>
+            <p className="mt-4 text-sm leading-7 text-slate-400">Send me an email. It opens your email app with my address ready—no nonfunctional form or backend in the middle.</p>
+            <a href={`mailto:${socials.email}?subject=${encodeURIComponent('Hello, Hussain')}`} className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-xl bg-indigo-300 px-5 font-semibold text-slate-950 transition hover:bg-indigo-200">Email Hussain <ArrowUpRight aria-hidden="true" size={16} /></a>
+            <p className="mt-6 flex items-center gap-2 text-xs text-slate-500"><span className="size-1.5 rounded-full bg-emerald-400" /> Available for internships</p>
+          </div>
+          <ul className="grid content-center gap-2 sm:grid-cols-2">
+            {contacts.map(({ label, value, href, icon: Icon }) => (
+              <li key={label}>
+                <a href={href} target={label === 'Email' ? undefined : '_blank'} rel={label === 'Email' ? undefined : 'noopener noreferrer'} className="group flex min-h-[88px] items-center gap-4 rounded-xl border border-white/[0.07] bg-white/[0.02] p-4 transition-colors hover:border-indigo-300/30 hover:bg-white/[0.035]">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-white/[0.08] text-sky-200"><Icon aria-hidden="true" size={17} /></span>
+                  <span className="min-w-0 flex-1"><span className="block font-mono text-[9px] uppercase tracking-[0.15em] text-slate-500">{label}</span><span className="mt-1 block break-words text-xs text-slate-200 sm:text-sm">{value}</span></span>
+                  {label !== 'Email' && <ArrowUpRight aria-hidden="true" size={14} className="shrink-0 text-slate-600 transition group-hover:text-sky-200" />}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
